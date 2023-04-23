@@ -9,13 +9,15 @@ import { Summary } from "./components/Summary";
 
 
 function App() {
-  const [text, setText] = useState("Enter your text here");
-  
-  let Returned = false; 
+  const [text, setText] = useState("");
+  const [WordCnt, setWordCnt] = useState(0);
+  const [LineCnt, setLineCnt] = useState(0);
+  const [CharCnt, setCharCnt] = useState(0);
+
   function handleUpClick(e) {
     // console.log(e.target.innerText);
     let transformTo = e.target.innerText.toLowerCase();
-    console.log(typeof(text) != "number");
+    // console.log(typeof(text) != "number");
     if(typeof(text) != "number"){
         if (transformTo === "uppercase") {
         setText(text.toUpperCase())
@@ -27,42 +29,59 @@ function App() {
 
       // TODO: this function should only be called first time the button is clicked.  
 
-      else if(transformTo === "word count" && Returned === false){
-        console.log("hasdhl");
-        let arrLength = text.split(" ").length;
-        // console.log(arrLength);
-        setText(arrLength);
-        Returned = true;
-      }
-
-      else if (transformTo === "character count") {
-        let arrLength = text.split("").length;
-        console.log(arrLength);
-        setText(arrLength);
-      }
-    
-
-    else if (transformTo === "line count") {
-      // debugger;
-      let arrLength = text.split("\n").length;
-      let newText = text;
-      
-      while(newText.at(-1)==="\n") {
-        console.log(newText.at(-1)==="\n");
-        newText = newText.slice(0,-1);
-        arrLength--;
-      }
-      console.log(newText.slice(0,-1));
-      setText(arrLength);
-    }
+     
   }
 
   }
   
-  function handleChange(event){
-    console.log("Changed");
-    // console.log(event.target);
+function handleChange(event){
     setText(event.target.value);
+
+    const summary = {
+      WordCnt : 0,
+      LineCnt : 0,
+      CharCnt : 0
+    }
+      let TextArr =[];
+      console.log(event.nativeEvent.data);
+
+    // Word Count
+    // write a logic to count the words text and update setWordCnt state.
+    // if (text != "") {
+      TextArr = text.split(" ");
+      let newText = text;
+      while(newText.at(-1)===" "){
+        newText = newText.slice(0,-1);
+        TextArr.length--;
+      }
+      setWordCnt(TextArr.length);
+    // }
+
+      
+      
+
+
+
+    // Char Count
+    // if (text != "") {
+      TextArr = text.split("");
+      setCharCnt(TextArr.length);
+    // }
+
+
+
+     // Line Count 
+    TextArr = text.split("\n");
+    newText = text;
+    
+    while(newText.at(-1)==="\n") {
+      newText = newText.slice(0,-1);
+      TextArr.length--;
+    }
+
+    setLineCnt(TextArr.length);   
+    console.log(text.split(""));
+    
   }
 
   const buttons = [
@@ -91,7 +110,11 @@ function App() {
             )}
           </div>
         </div>
-        <Summary />
+        <Summary 
+          WordCnt = {WordCnt}
+          LineCnt = {LineCnt}
+          CharCnt = {CharCnt}
+        />
       </div>
     </>
   );
