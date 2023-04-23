@@ -64,6 +64,14 @@ function App() {
     setText(event.target.value);
   }
 
+  const buttons = [
+    "UPPERCASE",
+    "lowercase",
+    "Word Count",
+    "Character Count",
+    "Line Count",
+    "lowercase"
+  ]
 
   return (
     <>
@@ -74,25 +82,12 @@ function App() {
           <div className="col-9 me-5">
             <TextBox value={text} onChange={handleChange} title="Enter Your text Below" />
           </div>
-          <div className="col">
-            <div className="w-100 mt-4">
-              <Button onClick={handleUpClick} content="UPPERCASE" />
-            </div>
-            <div className="w-100 my-2">
-              <Button onClick={handleUpClick} content="lowercase" />
-            </div>
-            <div className="w-100 my-2">
-              <Button onClick={handleUpClick} content="Word Count" />
-            </div>
-            <div className="w-100 my-2">
-              <Button onClick={handleUpClick} content="Character Count" />
-            </div>
-            <div className="w-100 my-2">
-              <Button onClick={handleUpClick} content="Line Count" />
-            </div>
-            <div className="w-100 my-2">
-              <Button onClick={handleUpClick} content="lowercase" />
-            </div>
+          <div className="col my-4">
+            {buttons.map(button => 
+              <div className="w-100 my-2">
+                <Button onClick={handleUpClick} content={button} />
+              </div>
+            )}
           </div>
         </div>
       </div>
