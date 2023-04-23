@@ -4,6 +4,7 @@ import { TextBox } from "./components/TextBox";
 import { Button } from "./components/Button";
 
 import { useState } from "react";
+import { Summary } from "./components/Summary";
 
 
 
@@ -90,6 +91,7 @@ function App() {
             )}
           </div>
         </div>
+        <Summary />
       </div>
     </>
   );
