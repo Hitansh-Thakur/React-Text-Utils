@@ -29,7 +29,6 @@ function App() {
 
     }
     
-
   }
 
 
@@ -40,11 +39,6 @@ function App() {
   };
   
   
-  
-
-
-  
-  let TextArr=[];
   function handleChange(event){
   setText(event.target.value);
   }
