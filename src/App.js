@@ -33,29 +33,34 @@ function App() {
   }
 
   }
+
+
+  const countWords = () => {
+    if(text.length === 0) return 0;
+
+    return text.trim().split(/\s+/).length; //using redux
+  };
   
-function handleChange(event){
-    setText(event.target.value);
+  
+  
 
-    const summary = {
-      WordCnt : 0,
-      LineCnt : 0,
-      CharCnt : 0
-    }
-      let TextArr =[];
-      console.log(event.nativeEvent.data);
 
-    // Word Count
-    // write a logic to count the words text and update setWordCnt state.
-    // if (text != "") {
-      TextArr = text.split(" ");
-      let newText = text;
-      while(newText.at(-1)===" "){
-        newText = newText.slice(0,-1);
-        TextArr.length--;
-      }
-      setWordCnt(TextArr.length);
-    // }
+  
+  let TextArr=[];
+  function handleChange(event){
+  // let pressedChar = event.nativeEvent.data;
+  setText(event.target.value);
+
+  // TextArr.push(pressedChar)
+  // console.log(TextArr);
+
+// Word Count
+// let count = 0
+//   if(pressedChar == " " || null){
+//     count++;
+//   }
+  // setWordCnt(TextArr.length)
+  
 
       
       
@@ -64,23 +69,23 @@ function handleChange(event){
 
     // Char Count
     // if (text != "") {
-      TextArr = text.split("");
-      setCharCnt(TextArr.length);
+      // TextArr = text.split("");
+      // setCharCnt(TextArr.length);
     // }
 
 
 
      // Line Count 
-    TextArr = text.split("\n");
-    newText = text;
+    // TextArr = text.split("\n");
+    // let newText = text;
     
-    while(newText.at(-1)==="\n") {
-      newText = newText.slice(0,-1);
-      TextArr.length--;
-    }
+    // while(newText.at(-1)==="\n") {
+    //   newText = newText.slice(0,-1);
+    //   TextArr.length--;
+    // }
 
-    setLineCnt(TextArr.length);   
-    console.log(text.split(""));
+    // setLineCnt(TextArr.length);   
+    // console.log(text.split(""));
     
   }
 
@@ -111,7 +116,7 @@ function handleChange(event){
           </div>
         </div>
         <Summary 
-          WordCnt = {WordCnt}
+          WordCnt = {countWords()}
           LineCnt = {LineCnt}
           CharCnt = {CharCnt}
         />
