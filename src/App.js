@@ -27,10 +27,8 @@ function App() {
         setText(text.toLowerCase())
       }
 
-      // TODO: this function should only be called first time the button is clicked.  
-
-     
-  }
+    }
+    
 
   }
 
@@ -48,45 +46,7 @@ function App() {
   
   let TextArr=[];
   function handleChange(event){
-  // let pressedChar = event.nativeEvent.data;
   setText(event.target.value);
-
-  // TextArr.push(pressedChar)
-  // console.log(TextArr);
-
-// Word Count
-// let count = 0
-//   if(pressedChar == " " || null){
-//     count++;
-//   }
-  // setWordCnt(TextArr.length)
-  
-
-      
-      
-
-
-
-    // Char Count
-    // if (text != "") {
-      // TextArr = text.split("");
-      // setCharCnt(TextArr.length);
-    // }
-
-
-
-     // Line Count 
-    // TextArr = text.split("\n");
-    // let newText = text;
-    
-    // while(newText.at(-1)==="\n") {
-    //   newText = newText.slice(0,-1);
-    //   TextArr.length--;
-    // }
-
-    // setLineCnt(TextArr.length);   
-    // console.log(text.split(""));
-    
   }
 
   const buttons = [
