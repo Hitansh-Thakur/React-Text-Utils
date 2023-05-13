@@ -16,27 +16,48 @@ function App() {
 
   function handleUpClick(e) {
     // console.log(e.target.innerText);
-    let transformTo = e.target.innerText.toLowerCase();
+    let util = e.target.innerText.toLowerCase();
     // console.log(typeof(text) != "number");
     if(typeof(text) != "number"){
-        if (transformTo === "uppercase") {
+        if (util === "uppercase") {
         setText(text.toUpperCase())
       }
 
-      else if (transformTo === "lowercase") {
+      else if (util === "lowercase") {
         setText(text.toLowerCase())
       }
+    }
+    if (util === "remove extra spaces") {
+      setText(text.trim().replace(/\s+/g," "));
+    }
+
+    else if (util === "clear text") {
+      setText("");
+    }
+
+    else if (util === "copy to clipboard") {
+      navigator.clipboard.writeText(text);
 
     }
     
   }
 
 
-  const countWords = () => {
-    if(text.length === 0) return 0;
-
+  const wordCount = () => {
+    if(text.length === 0 || text === "//") return 0;
     return text.trim().split(/\s+/).length; //using redux
   };
+
+  const lineCount = () =>{
+    if(text.length === 0) return 0;
+
+    return text.trim().split(/\n/).length
+  }
+
+  const charCount = () =>{
+    if(text.length === 0) return 0;
+    return text.trim().length
+  }
   
   
   function handleChange(event){
@@ -46,9 +67,9 @@ function App() {
   const buttons = [
     "UPPERCASE",
     "lowercase",
-    "Word Count",
-    "Character Count",
-    "Line Count",
+    "Remove Extra Spaces",
+    "Copy To ClipBoard",
+    "Clear Text",
     "lowercase"
   ]
 
@@ -70,9 +91,9 @@ function App() {
           </div>
         </div>
         <Summary 
-          WordCnt = {countWords()}
-          LineCnt = {LineCnt}
-          CharCnt = {CharCnt}
+          WordCnt = {wordCount()}
+          LineCnt = {lineCount()}
+          CharCnt = {charCount()}
         />
       </div>
     </>
