@@ -1,45 +1,63 @@
 import "./App.css";
+import { useState } from "react";
+import { Summary } from "./components/Summary";
+
+// Comonents
 import { Navbar } from "./components/Navbar";
 import { TextBox } from "./components/TextBox";
 import { Button } from "./components/Button";
+import Alert from "./components/Alert";
 
-import { useState } from "react";
-import { Summary } from "./components/Summary";
 
 
 
 function App() {
-  const [text, setText] = useState("");
-  const [WordCnt, setWordCnt] = useState(0);
-  const [LineCnt, setLineCnt] = useState(0);
-  const [CharCnt, setCharCnt] = useState(0);
 
-  function handleUpClick(e) {
+  const [text, setText] = useState("");
+  const [Clicked, setClicked] = useState(false);
+  const [alert, setAlert] = useState(null);
+
+  const showAlert = (message, type) => {
+    setAlert({
+      Msg:message,
+      Type:type,
+    })
+
+  }
+
+  
+  const handleUpClick = (e) => {
+    setClicked(true);
     // console.log(e.target.innerText);
     let util = e.target.innerText.toLowerCase();
     // console.log(typeof(text) != "number");
     if(typeof(text) != "number"){
         if (util === "uppercase") {
         setText(text.toUpperCase())
+        showAlert("Converted to Uppercase","success");
       }
 
       else if (util === "lowercase") {
         setText(text.toLowerCase())
+        showAlert("Converted to lowercase","success");
+
       }
     }
     if (util === "remove extra spaces") {
       setText(text.trim().replace(/\s+/g," "));
+      showAlert("Extra Spaces Removed","success");
     }
 
     else if (util === "clear text") {
       setText("");
+      showAlert("Text Cleared","success");
     }
 
     else if (util === "copy to clipboard") {
       navigator.clipboard.writeText(text);
-
+      showAlert("Copied to Clipboard","success");
     }
-    
+    // setClicked(false);
   }
 
 
@@ -60,10 +78,21 @@ function App() {
   }
   
   
-  function handleChange(event){
-  setText(event.target.value);
+  function handleChange(e){
+    setText(e.target.value);
   }
 
+  
+  function handleSearch(e){
+    console.log(e);
+  }
+
+
+
+
+
+
+  
   const buttons = [
     "UPPERCASE",
     "lowercase",
@@ -72,10 +101,11 @@ function App() {
     "Clear Text",
     "lowercase"
   ]
-
   return (
     <>
-      <Navbar />
+
+      <Navbar handleSearch={handleSearch}/>
+      {Clicked && <Alert alert={alert} Dismissible={true}  />}
       <div className="container w-60 mt-5">
         <h1 className="text-primary-emphasis my-3">Convert your text</h1>
         <div className="row">
