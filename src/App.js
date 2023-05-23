@@ -21,6 +21,9 @@ function App() {
     setAlert({
       Msg:message,
       Type:type,
+      close:function close() {
+        setClicked(false)
+      }
     })
 
   }
@@ -101,11 +104,18 @@ function App() {
     "Clear Text",
     "lowercase"
   ]
+
+
+  function handleClose() {
+    setClicked(false)
+    
+  }
+
   return (
     <>
 
       <Navbar handleSearch={handleSearch}/>
-      {Clicked && <Alert alert={alert} Dismissible={true}  />}
+      {Clicked && <Alert alert={alert} Dismissible={true} OnClose={handleClose} />}
       <div className="container w-60 mt-5">
         <h1 className="text-primary-emphasis my-3">Convert your text</h1>
         <div className="row">
