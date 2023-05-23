@@ -4,7 +4,6 @@ import { useState } from 'react'
 const Alert = (props) => {
     const [dismiss, setdismiss] = useState(true)
 
-        console.log(props.alert);
 
     function handleClick() {
         setdismiss(false)
@@ -12,7 +11,7 @@ const Alert = (props) => {
     }
 
         return <>
-            {props && dismiss && <div className={`d-flex alert alert-${props.alert.Type} alert-dismissible show`} role="alert"> 
+            {props && dismiss && <div className={`d-flex alert alert-${props.alert.Type} alert-dismissible show fade`} role="alert"> 
                 <button type="button" onClick={handleClick} className="btn-close" aria-label="Close"></button>
 
                 {/* material icon for tick success */}
