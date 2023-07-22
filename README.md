@@ -47,6 +47,12 @@ Contributions are welcome and encouraged. To contribute, please follow these ste
 
 Please ensure that your code follows the existing style and conventions, and that all tests pass before submitting your pull request.
 
+<!-- include an image of the website -->
+## Screenshots
+> Working image of the website
+
+![Text Utils App](./public/Screenshot.png)
+
 
 
 ---
